@@ -1,0 +1,10 @@
+CentOs 7 安装默认不联网的
+su root /*进入[root@localhost]#
+nmcli /*查看网卡配置,可能ifconfig识别不出来,这个会弹出来个ens33,这个就是网卡了,127.0.0.1是你的本机地址
+cd /etc/sysconfig/network-script/ /*进入这个目录
+ls /查看子文件会看到ifcfg-ens33
+vi ifcfg-ens33 /*vim编辑这个玩意,一般会弹出来配置信息,但也可能弹不出来空白一片,多刷几次ok
+i /*可写模式一个个改,比如BOOTTPROTO=dhcp改成static静态的(动态也可以),我是测试服务器的要固定地址用的静态,在ipv4上添加IPADDR=xxx.xxx.xxx.xxx,NETMASK=255.255.225.0的,也可以加dns这些,ONBOOT=no改成yes,开启
+:wq! /*保存并强制退出
+然后ping一顿
+
